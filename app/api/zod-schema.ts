@@ -26,5 +26,4 @@ export const taskBodySchema = z.strictObject({
   deadline: z.string(),
   isCompleted: z.boolean(),
   isImportant: z.boolean(),
-  directoryId: z.number(),
 })
