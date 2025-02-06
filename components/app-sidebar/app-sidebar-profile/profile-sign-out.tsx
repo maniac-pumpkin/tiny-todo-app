@@ -1,3 +1,5 @@
+"use client"
+
 import AlertDialog from "@/components/dialogs/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { deleteCookie } from "@/lib/utils"
