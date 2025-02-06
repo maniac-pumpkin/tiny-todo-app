@@ -6,6 +6,7 @@ type PropsType = { params: Promise<{ name: string }> }
 
 export default async function Page({ params }: PropsType) {
   const { name } = await params
+
   const tasks = await taskGet()
 
   const tasksByDirName = tasks.filter(({ dirName }) => dirName === name)
