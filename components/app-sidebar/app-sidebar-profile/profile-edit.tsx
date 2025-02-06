@@ -1,3 +1,5 @@
+"use client"
+
 import { userUpdateCredits } from "@/app/actions/user-actions"
 import RegularDialog from "@/components/dialogs/regular-dialog"
 import SubmitButton from "@/components/helpers/submit-button"
