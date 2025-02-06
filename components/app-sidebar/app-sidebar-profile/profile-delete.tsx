@@ -1,3 +1,5 @@
+"use client"
+
 import { userDeleteAcc } from "@/app/actions/user-actions"
 import AlertDialog from "@/components/dialogs/alert-dialog"
 import { Button } from "@/components/ui/button"
