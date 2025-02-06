@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input"
 import { SidebarTrigger } from "@/components/ui/sidebar"
-import { format } from "date-fns"
+import { formatDate } from "@/lib/utils"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import AddTask from "./app-topbar-add-task"
@@ -39,7 +39,7 @@ function AppTopbar() {
           value={text}
           onChange={(e) => setText(e.currentTarget.value)}
         />
-        <span className="text-sm sm:text-base">{format(new Date(), "MMMM dd, yyyy")}</span>
+        <span className="text-sm sm:text-base">{formatDate(new Date())}</span>
         <AddTask />
       </nav>
       <Input

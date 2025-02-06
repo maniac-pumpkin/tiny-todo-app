@@ -1,7 +1,10 @@
 import { clsx, type ClassValue } from "clsx"
+import { format } from "date-fns"
 import { twMerge } from "tailwind-merge"
 
 export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs))
+
+export const formatDate = (date: Date | string) => format(date, "MMMM dd, yyyy")
 
 export const getCookie = (name: string) => {
   const cookies = document.cookie.split("; ")

@@ -2,7 +2,7 @@
 
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { formatISO } from "date-fns"
+import { formatDate } from "@/lib/utils"
 import { Calendar } from "lucide-react"
 import TaskCardCompletedBtn from "./task-card-completed-btn"
 import TaskCardDeleteBtn from "./task-card-delete-btn"
@@ -31,7 +31,7 @@ function TaskCard(props: TaskCardPropsType) {
         <CardDescription>{props.description}</CardDescription>
         <p className="flex items-center gap-x-2 text-sm">
           <Calendar size={16} />
-          <span>{formatISO(props.deadline, { representation: "date" })}</span>
+          <span>{formatDate(props.deadline)}</span>
         </p>
       </CardContent>
       <CardFooter className="justify-between">
