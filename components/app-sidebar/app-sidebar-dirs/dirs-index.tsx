@@ -8,10 +8,12 @@ import type { FetchedDataType } from "@/hooks/use-fetch-fn"
 import useFetchFn from "@/hooks/use-fetch-fn"
 import { directoryGet } from "@/lib/client-api-services"
 import { ChevronsUpDown, Folders, MoreHorizontal } from "lucide-react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
-import CreateDirectory from "./dirs-create"
-import DeleteDirectory from "./dirs-delete"
-import EditDirectory from "./dirs-edit"
+
+const CreateDirectory = dynamic(() => import("./dirs-create"), { ssr: false })
+const DeleteDirectory = dynamic(() => import("./dirs-delete"), { ssr: false })
+const EditDirectory = dynamic(() => import("./dirs-edit"), { ssr: false })
 
 type DirPropsType = Pick<FetchedDataType<{ name: string; id: number; userId: number }[]>, "data" | "fetchData">
 export type DirOpPropsType = { id: number; fetchData: DirPropsType["fetchData"] }
