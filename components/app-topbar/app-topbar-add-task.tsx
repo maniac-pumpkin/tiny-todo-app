@@ -72,7 +72,7 @@ function AddTask() {
               </SelectTrigger>
               <SelectContent>
                 {data?.map(({ id, name }) => (
-                  <SelectItem key={crypto.randomUUID()} value={String(id)}>
+                  <SelectItem key={id} value={String(id)}>
                     {name}
                   </SelectItem>
                 ))}

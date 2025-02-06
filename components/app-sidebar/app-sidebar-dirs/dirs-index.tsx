@@ -35,8 +35,8 @@ function DropDown({ id, fetchData }: DirOpPropsType) {
 }
 
 function Directories({ data: dirs, fetchData }: DirPropsType) {
-  return dirs?.map(({ name, id }) => (
-    <SidebarMenuSub key={crypto.randomUUID()}>
+  return dirs?.map(({ id, name }) => (
+    <SidebarMenuSub key={id}>
       <SidebarMenuSubItem className="flex">
         <SidebarMenuButton isActive={false} asChild>
           <Link href={`/directories/${name}`}>{name}</Link>

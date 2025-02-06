@@ -50,7 +50,7 @@ function AppTopbarFilter() {
         </SelectTrigger>
         <SelectContent>
           {selectOptions.map((option) => (
-            <SelectItem key={crypto.randomUUID()} value={option}>
+            <SelectItem key={option} value={option}>
               {option}
             </SelectItem>
           ))}
