@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { formatDate } from "@/lib/utils"
 import { Calendar } from "lucide-react"
+import { memo } from "react"
 import TaskCardCompletedBtn from "./task-card-completed-btn"
 import TaskCardDeleteBtn from "./task-card-delete-btn"
 import TaskCardEditBtn from "./task-card-edit-btn"
@@ -46,4 +47,4 @@ function TaskCard(props: TaskCardPropsType) {
   )
 }
 
-export default TaskCard
+export default memo(TaskCard)
