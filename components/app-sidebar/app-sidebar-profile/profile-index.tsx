@@ -1,3 +1,5 @@
+"use client"
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { SidebarHeader, SidebarMenuButton } from "@/components/ui/sidebar"
@@ -5,11 +7,13 @@ import useFetchFn from "@/hooks/use-fetch-fn"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { userGetUsername } from "@/lib/client-api-services"
 import { ChevronRight } from "lucide-react"
+import dynamic from "next/dynamic"
 import { memo } from "react"
-import AppSidebarThemeSwitch from "../app-sidebar-theme-switch"
-import DeleteAccountModal from "./profile-delete"
-import EditCredentialsForm from "./profile-edit"
-import SignOutModal from "./profile-sign-out"
+
+const AppSidebarThemeSwitch = dynamic(() => import("../app-sidebar-theme-switch"), { ssr: false })
+const DeleteAccountModal = dynamic(() => import("./profile-delete"), { ssr: false })
+const EditCredentialsForm = dynamic(() => import("./profile-edit"), { ssr: false })
+const SignOutModal = dynamic(() => import("./profile-sign-out"), { ssr: false })
 
 function AppSidebarAvatar() {
   const { data: username } = useFetchFn(userGetUsername)
