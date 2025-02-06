@@ -7,6 +7,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import AddTask from "./app-topbar-add-task"
 import AppTopbarFilter from "./app-topbar-filter"
+import AppTopbarTitle from "./app-topbar-title"
 
 function AppTopbar() {
   const searchParams = useSearchParams()
@@ -49,7 +50,7 @@ function AppTopbar() {
         value={text}
         onChange={(e) => setText(e.currentTarget.value)}
       />
-      <h1 className="mb-8 text-center text-xl font-bold sm:text-left sm:text-2xl">Tasks</h1>
+      <AppTopbarTitle />
       <AppTopbarFilter />
     </header>
   )
