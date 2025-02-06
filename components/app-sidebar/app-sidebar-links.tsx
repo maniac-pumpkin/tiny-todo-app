@@ -1,3 +1,5 @@
+"use client"
+
 import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 import { CircleCheck, CircleX, LayoutGrid, Star } from "lucide-react"
 import Link from "next/link"
