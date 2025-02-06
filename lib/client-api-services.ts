@@ -27,3 +27,16 @@ export const directoryGet = async () => {
     }[]
   >
 }
+
+export const taskGetCompleted = async () => {
+  const response = await fetch("/api/tasks/done", {
+    headers: {
+      authorization: `Bearer ${getCookie("token")}`,
+    },
+    cache: "no-store",
+  })
+
+  if (!response.ok) return "0"
+
+  return response.text()
+}
