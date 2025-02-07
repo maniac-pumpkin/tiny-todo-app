@@ -6,21 +6,21 @@ import SubmitButton from "@/components/helpers/submit-button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { SidebarMenuButton } from "@/components/ui/sidebar"
+import useDirectories from "@/hooks/use-directories"
 import { toast } from "@/hooks/use-toast"
 import { Plus } from "lucide-react"
 import Form from "next/form"
-import type { DirOpPropsType } from "./dirs-index"
 
-type PropsType = { fetchData: DirOpPropsType["fetchData"] }
+function CreateDirectory() {
+  const refresh = useDirectories((state) => state.refresh)
 
-function CreateDirectory({ fetchData }: PropsType) {
   const handleAction = async (f: FormData) => {
     if (await directoryCreate(f)) {
       toast({
         title: "Success",
         description: `Directory created successfully.`,
       })
-      fetchData()
+      refresh()
     } else
       toast({
         title: "Error",
