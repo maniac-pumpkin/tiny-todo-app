@@ -9,16 +9,16 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import useFetchFn from "@/hooks/use-fetch-fn"
+import useDirectories from "@/hooks/use-directories"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { toast } from "@/hooks/use-toast"
-import { directoryGet } from "@/lib/client-api-services"
 import Form from "next/form"
 import { memo } from "react"
 import SubmitButton from "../helpers/submit-button"
 
 function AddTask() {
-  const { data, fetchData } = useFetchFn(directoryGet)
+  const refresh = useDirectories((state) => state.refresh)
+  const directories = useDirectories((state) => state.directories)
   const isMobile = useIsMobile()
 
   const handleAction = async (f: FormData) => {
@@ -66,12 +66,12 @@ function AddTask() {
           </Label>
           <Label className="space-y-2">
             <span>Directory</span>
-            <Select name="dir-id" onOpenChange={fetchData} required>
+            <Select name="dir-id" onOpenChange={refresh} required>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Choose a directory" />
               </SelectTrigger>
               <SelectContent>
-                {data?.map(({ id, name }) => (
+                {directories?.map(({ id, name }) => (
                   <SelectItem key={id} value={String(id)}>
                     {name}
                   </SelectItem>
