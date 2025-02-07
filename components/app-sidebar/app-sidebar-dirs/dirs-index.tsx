@@ -4,9 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubItem } from "@/components/ui/sidebar"
-import type { FetchedDataType } from "@/hooks/use-fetch-fn"
-import useFetchFn from "@/hooks/use-fetch-fn"
-import { directoryGet } from "@/lib/client-api-services"
+import useDirectories, { type DirsType } from "@/hooks/use-directories"
 import { ChevronsUpDown, Folders, MoreHorizontal } from "lucide-react"
 import dynamic from "next/dynamic"
 import Link from "next/link"
@@ -15,10 +13,7 @@ const CreateDirectory = dynamic(() => import("./dirs-create"), { ssr: false })
 const DeleteDirectory = dynamic(() => import("./dirs-delete"), { ssr: false })
 const EditDirectory = dynamic(() => import("./dirs-edit"), { ssr: false })
 
-type DirPropsType = Pick<FetchedDataType<{ name: string; id: number; userId: number }[]>, "data" | "fetchData">
-export type DirOpPropsType = { id: number; fetchData: DirPropsType["fetchData"] }
-
-function DropDown({ id, fetchData }: DirOpPropsType) {
+function DropDown({ id }: { id: number }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -27,28 +22,28 @@ function DropDown({ id, fetchData }: DirOpPropsType) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" side="bottom">
-        <EditDirectory id={id} fetchData={fetchData} />
-        <DeleteDirectory id={id} fetchData={fetchData} />
+        <EditDirectory id={id} />
+        <DeleteDirectory id={id} />
       </DropdownMenuContent>
     </DropdownMenu>
   )
 }
 
-function Directories({ data: dirs, fetchData }: DirPropsType) {
-  return dirs?.map(({ id, name }) => (
+function Directories({ directories }: { directories: DirsType | null }) {
+  return directories?.map(({ id, name }) => (
     <SidebarMenuSub key={id}>
       <SidebarMenuSubItem className="flex">
         <SidebarMenuButton isActive={false} asChild>
           <Link href={`/directories/${name}`}>{name}</Link>
         </SidebarMenuButton>
-        {name !== "main" && <DropDown id={id} fetchData={fetchData} />}
+        {name !== "main" && <DropDown id={id} />}
       </SidebarMenuSubItem>
     </SidebarMenuSub>
   ))
 }
 
 function AppSidebarDirs() {
-  const { data, fetchData } = useFetchFn(directoryGet)
+  const directories = useDirectories((state) => state.directories)
 
   return (
     <Collapsible>
@@ -61,10 +56,10 @@ function AppSidebarDirs() {
               <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>
           </CollapsibleTrigger>
-          <CreateDirectory fetchData={fetchData} />
+          <CreateDirectory />
         </section>
         <CollapsibleContent>
-          <Directories data={data} fetchData={fetchData} />
+          <Directories directories={directories} />
         </CollapsibleContent>
       </SidebarMenuItem>
     </Collapsible>
