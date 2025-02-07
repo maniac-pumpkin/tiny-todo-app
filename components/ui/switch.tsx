@@ -6,7 +6,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const Switch = React.forwardRef<
-  React.ComponentRef<typeof SwitchPrimitives.Root>,
+  React.ElementRef<typeof SwitchPrimitives.Root>,
   React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>
 >(({ className, ...props }, ref) => (
   <SwitchPrimitives.Root
@@ -24,7 +24,6 @@ const Switch = React.forwardRef<
     />
   </SwitchPrimitives.Root>
 ))
-
 Switch.displayName = SwitchPrimitives.Root.displayName
 
 export { Switch }
