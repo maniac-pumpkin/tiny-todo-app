@@ -4,7 +4,7 @@ import { create } from "zustand/react"
 export type DirsType = { id: number; name: string; userId: number }[]
 
 type StateType = {
-  directories: DirsType | null
+  directories: DirsType
   refresh: () => Promise<void>
 }
 
@@ -17,14 +17,14 @@ const useDirectories = create<StateType>((set) => {
       const data: DirsType = await response.json()
       set({ directories: data })
     } catch {
-      set({ directories: null })
+      set({ directories: [] })
     }
   }
 
   fetchDirectories()
 
   return {
-    directories: null,
+    directories: [],
     refresh: fetchDirectories,
   }
 })
