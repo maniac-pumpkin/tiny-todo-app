@@ -14,7 +14,6 @@ export default function Error({ error, reset }: PropsType) {
       <ServerCrash size={68} className="mx-auto" />
       <h3 className="text-xl font-bold">{error.name}</h3>
       <p className="max-w-96 text-lg">{error.message}</p>
-      <p className="max-w-96 text-xs">{error.digest}</p>
       <Button onClick={reset}>Reset</Button>
     </div>
   )
