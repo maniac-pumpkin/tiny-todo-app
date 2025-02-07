@@ -28,3 +28,15 @@ export const getCookie = (name: string) => {
 export const deleteCookie = (name: string) => {
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`
 }
+
+export const userGetUsername = async () => {
+  const response = await fetch("/api/users", {
+    headers: {
+      authorization: `Bearer ${getCookie("token")}`,
+    },
+  })
+
+  if (!response.ok) return ""
+
+  return response.text()
+}
