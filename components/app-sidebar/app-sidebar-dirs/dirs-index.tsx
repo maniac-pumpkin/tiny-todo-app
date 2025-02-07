@@ -29,8 +29,8 @@ function DropDown({ id }: { id: number }) {
   )
 }
 
-function Directories({ directories }: { directories: DirsType | null }) {
-  return directories?.map(({ id, name }) => (
+function Directories({ directories }: { directories: DirsType }) {
+  return directories.map(({ id, name }) => (
     <SidebarMenuSub key={id}>
       <SidebarMenuSubItem className="flex">
         <SidebarMenuButton isActive={false} asChild>
