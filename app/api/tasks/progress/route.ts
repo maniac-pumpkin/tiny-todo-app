@@ -15,9 +15,9 @@ export async function GET(req: NextRequest) {
       .innerJoin(directories, eq(tasks.directoryId, directories.id))
       .where(eq(directories.userId, userId))
 
-    const completedTasks = tasksByUser.filter(({ isCompleted }) => isCompleted).length
+    const completedTasks = tasksByUser.filter(({ isCompleted }) => isCompleted)
 
-    const percentageCompleted = (completedTasks / tasksByUser.length) * 100
+    const percentageCompleted = (completedTasks.length / tasksByUser.length) * 100 || 0
 
     return new Response(Math.trunc(percentageCompleted).toString(), { status: 200 })
   } catch (error) {
