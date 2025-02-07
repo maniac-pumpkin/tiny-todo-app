@@ -5,7 +5,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { SidebarHeader, SidebarMenuButton } from "@/components/ui/sidebar"
 import useFetchFn from "@/hooks/use-fetch-fn"
 import { useIsMobile } from "@/hooks/use-mobile"
-import { userGetUsername } from "@/lib/client-api-services"
+import { userGetUsername } from "@/lib/utils"
 import { ChevronRight } from "lucide-react"
 import dynamic from "next/dynamic"
 import { memo } from "react"
