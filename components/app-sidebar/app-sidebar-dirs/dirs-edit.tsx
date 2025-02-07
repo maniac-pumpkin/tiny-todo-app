@@ -6,19 +6,21 @@ import SubmitButton from "@/components/helpers/submit-button"
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import useDirectories from "@/hooks/use-directories"
 import { toast } from "@/hooks/use-toast"
 import { Pencil } from "lucide-react"
 import Form from "next/form"
-import type { DirOpPropsType } from "./dirs-index"
 
-function EditDirectory({ id, fetchData }: DirOpPropsType) {
+function EditDirectory({ id }: { id: number }) {
+  const refresh = useDirectories((state) => state.refresh)
+
   const handleAction = async (f: FormData) => {
     if (await directoryEdit(f, id)) {
       toast({
         title: "Edition success",
         description: "Directory name updated successfully.",
       })
-      fetchData()
+      refresh()
     } else
       toast({
         title: "Edition failed",
