@@ -17,7 +17,6 @@ import { memo } from "react"
 import SubmitButton from "../helpers/submit-button"
 
 function AddTask() {
-  const refresh = useDirectories((state) => state.refresh)
   const directories = useDirectories((state) => state.directories)
   const isMobile = useIsMobile()
 
@@ -66,12 +65,12 @@ function AddTask() {
           </Label>
           <Label className="space-y-2">
             <span>Directory</span>
-            <Select name="dir-id" onOpenChange={refresh} required>
+            <Select name="dir-id" required>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Choose a directory" />
               </SelectTrigger>
               <SelectContent>
-                {directories?.map(({ id, name }) => (
+                {directories.map(({ id, name }) => (
                   <SelectItem key={id} value={String(id)}>
                     {name}
                   </SelectItem>
