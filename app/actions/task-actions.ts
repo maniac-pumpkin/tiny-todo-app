@@ -8,13 +8,14 @@ const BASE_URL = env.NEXT_PUBLIC_BASE_URL
 
 export const taskGet = async () => {
   const cookie = await cookies()
+  const { value } = cookie.get("token")!
 
   const response = await fetch(`${BASE_URL}/api/tasks`, {
-    headers: {
-      authorization: `Bearer ${cookie.get("token")!.value}`,
-    },
+    headers: { authorization: value },
     next: { tags: ["tasks"] },
   })
+
+  if (!response.ok) return []
 
   return response.json() as Promise<
     {
@@ -39,12 +40,11 @@ export const taskCreate = async (f: FormData) => {
   const isCompleted = f.get("is-completed") as string | null
 
   const cookie = await cookies()
+  const { value } = cookie.get("token")!
 
   const response = await fetch(`${BASE_URL}/api/tasks/${dirId}`, {
     method: "POST",
-    headers: {
-      authorization: `Bearer ${cookie.get("token")!.value}`,
-    },
+    headers: { authorization: value },
     body: JSON.stringify({
       title,
       description,
@@ -67,12 +67,11 @@ export const taskEdit = async (id: number, f: FormData) => {
   const isCompleted = f.get("is-completed") as string | null
 
   const cookie = await cookies()
+  const { value } = cookie.get("token")!
 
   const response = await fetch(`${BASE_URL}/api/tasks/${id}`, {
     method: "PUT",
-    headers: {
-      authorization: `Bearer ${cookie.get("token")!.value}`,
-    },
+    headers: { authorization: value },
     body: JSON.stringify({
       title,
       description,
@@ -89,12 +88,11 @@ export const taskEdit = async (id: number, f: FormData) => {
 
 export const taskComplete = async (id: number, isCompleted: boolean) => {
   const cookie = await cookies()
+  const { value } = cookie.get("token")!
 
   const response = await fetch(`${BASE_URL}/api/tasks/${id}`, {
     method: "PUT",
-    headers: {
-      authorization: `Bearer ${cookie.get("token")!.value}`,
-    },
+    headers: { authorization: value },
     body: JSON.stringify({
       isCompleted,
     }),
@@ -107,12 +105,11 @@ export const taskComplete = async (id: number, isCompleted: boolean) => {
 
 export const taskImportant = async (id: number, isImportant: boolean) => {
   const cookie = await cookies()
+  const { value } = cookie.get("token")!
 
   const response = await fetch(`${BASE_URL}/api/tasks/${id}`, {
     method: "PUT",
-    headers: {
-      authorization: `Bearer ${cookie.get("token")!.value}`,
-    },
+    headers: { authorization: value },
     body: JSON.stringify({
       isImportant,
     }),
@@ -125,12 +122,11 @@ export const taskImportant = async (id: number, isImportant: boolean) => {
 
 export const taskDelete = async (id: number) => {
   const cookie = await cookies()
+  const { value } = cookie.get("token")!
 
   const response = await fetch(`${BASE_URL}/api/tasks/${id}`, {
     method: "DELETE",
-    headers: {
-      authorization: `Bearer ${cookie.get("token")!.value}`,
-    },
+    headers: { authorization: value },
   })
 
   revalidateTag("tasks")
