@@ -46,12 +46,11 @@ export const userUpdateCredits = async (f: FormData) => {
   const newPassword = f.get("new-password") as string
 
   const cookie = await cookies()
+  const { value } = cookie.get("token")!
 
   const response = await fetch(`${BASE_URL}/api/users`, {
     method: "PUT",
-    headers: {
-      authorization: `Bearer ${cookie.get("token")!.value}`,
-    },
+    headers: { authorization: value },
     body: JSON.stringify({
       username: username || null,
       prevPassword: prevPassword || null,
@@ -64,12 +63,11 @@ export const userUpdateCredits = async (f: FormData) => {
 
 export const userDeleteAcc = async () => {
   const cookie = await cookies()
+  const { value } = cookie.get("token")!
 
   const response = await fetch(`${BASE_URL}/api/users`, {
     method: "DELETE",
-    headers: {
-      authorization: `Bearer ${cookie.get("token")!.value}`,
-    },
+    headers: { authorization: value },
   })
 
   return response.ok
