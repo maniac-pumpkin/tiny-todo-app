@@ -1,4 +1,4 @@
-import { getCookie } from "@/lib/utils"
+import { getClientAuthToken } from "@/lib/jwt-utils"
 import { create } from "zustand/react"
 
 type StateType = {
@@ -9,9 +9,9 @@ type StateType = {
 const useTasksProgress = create<StateType>((set) => {
   const fetchTasksProgress = async () => {
     try {
-      const response = await fetch("/api/tasks/progress", {
-        headers: { authorization: `Bearer ${getCookie("token")}` },
-      })
+      const authorization = getClientAuthToken()!
+
+      const response = await fetch("/api/tasks/progress", { headers: { authorization } })
 
       const data: string = await response.text()
 
