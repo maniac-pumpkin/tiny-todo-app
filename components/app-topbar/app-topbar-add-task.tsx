@@ -13,10 +13,11 @@ import useDirectories from "@/hooks/use-directories"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { toast } from "@/hooks/use-toast"
 import Form from "next/form"
-import { memo } from "react"
+import { memo, useState } from "react"
 import SubmitButton from "../helpers/submit-button"
 
 function AddTask() {
+  const [isOpen, setIsOpen] = useState(false)
   const directories = useDirectories((state) => state.directories)
   const isMobile = useIsMobile()
 
@@ -26,6 +27,7 @@ function AddTask() {
         title: "Success",
         description: "Task created successfully.",
       })
+      setIsOpen(false)
     } else
       toast({
         title: "Error",
@@ -38,6 +40,7 @@ function AddTask() {
     <RegularDialog
       title="Add a task"
       trigger={<Button size={isMobile ? "sm" : "default"}>Add new task</Button>}
+      control={{ open: isOpen, onOpenChange: setIsOpen }}
       content={
         <Form action={handleAction} className="flex flex-grow flex-col gap-y-5">
           <Label className="space-y-2">
