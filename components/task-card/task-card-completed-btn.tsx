@@ -2,6 +2,7 @@
 
 import { taskComplete } from "@/app/actions/task-actions"
 import useTasksProgress from "@/hooks/use-tasks-progress"
+import { cn } from "@/lib/utils"
 import { startTransition, useOptimistic } from "react"
 import { Badge } from "../ui/badge"
 
@@ -21,12 +22,12 @@ function TaskCardCompletedBtn({ id, isCompleted }: PropsType) {
       refresh()
     })
 
-  const className = completed ? "bg-green-600 hover:bg-green-700" : "bg-yellow-600 hover:bg-yellow-700"
-  const innerText = completed ? "Completed" : "Uncompleted"
-
   return (
-    <Badge className={className} onClick={handleAction}>
-      {innerText}
+    <Badge
+      className={cn("bg-yellow-600 hover:bg-yellow-700", completed && "bg-green-600 hover:bg-green-700")}
+      onClick={handleAction}
+    >
+      {completed ? "Completed" : "Uncompleted"}
     </Badge>
   )
 }
