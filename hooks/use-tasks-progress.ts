@@ -1,3 +1,5 @@
+"use client"
+
 import { getClientAuthToken } from "@/lib/jwt-utils"
 import { create } from "zustand/react"
 
