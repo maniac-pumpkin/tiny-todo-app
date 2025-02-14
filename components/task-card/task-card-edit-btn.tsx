@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { toast } from "@/hooks/use-toast"
 import { Pencil } from "lucide-react"
 import Form from "next/form"
-import { memo } from "react"
+import { memo, useState } from "react"
 import DatePicker from "../helpers/date-picker"
 import SubmitButton from "../helpers/submit-button"
 import { Checkbox } from "../ui/checkbox"
@@ -16,13 +16,16 @@ import { Textarea } from "../ui/textarea"
 import type { TaskCardPropsType } from "./task-card-index"
 
 function TaskCardEditBtn(props: TaskCardPropsType) {
+  const [isOpen, setIsOpen] = useState(false)
+
   const handleAction = async (f: FormData) => {
-    if (await taskEdit(props.id, f))
+    if (await taskEdit(props.id, f)) {
       toast({
         title: "Success",
         description: "The task has been successfully updated.",
       })
-    else
+      setIsOpen(false)
+    } else
       toast({
         title: "Error",
         description: "There was an error updating the task. Please try again.",
@@ -38,6 +41,7 @@ function TaskCardEditBtn(props: TaskCardPropsType) {
           <Pencil />
         </Button>
       }
+      control={{ open: isOpen, onOpenChange: setIsOpen }}
       content={
         <Form action={handleAction} className="flex flex-grow flex-col gap-y-5">
           <Label className="space-y-2">
