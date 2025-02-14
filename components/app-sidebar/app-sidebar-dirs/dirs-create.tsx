@@ -10,8 +10,10 @@ import useDirectories from "@/hooks/use-directories"
 import { toast } from "@/hooks/use-toast"
 import { Plus } from "lucide-react"
 import Form from "next/form"
+import { useState } from "react"
 
 function CreateDirectory() {
+  const [isOpen, setIsOpen] = useState(false)
   const refresh = useDirectories((state) => state.refresh)
 
   const handleAction = async (f: FormData) => {
@@ -21,6 +23,7 @@ function CreateDirectory() {
         description: `Directory created successfully.`,
       })
       refresh()
+      setIsOpen(false)
     } else
       toast({
         title: "Error",
@@ -33,6 +36,7 @@ function CreateDirectory() {
     <RegularDialog
       title="Create directory"
       description="Capitalized directory name, up to 15 characters in length."
+      control={{ open: isOpen, onOpenChange: setIsOpen }}
       trigger={
         <SidebarMenuButton className="w-8 justify-center">
           <Plus />
