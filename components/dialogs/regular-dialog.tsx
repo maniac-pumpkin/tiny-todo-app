@@ -16,11 +16,15 @@ type PropsType = {
   description?: string
   trigger: ReactNode
   content: ReactNode
+  control?: {
+    open: boolean
+    onOpenChange: (open: boolean) => void
+  }
 }
 
-function RegularDialog({ title, description, content, trigger }: PropsType) {
+function RegularDialog({ title, description, content, trigger, control }: PropsType) {
   return (
-    <Dialog>
+    <Dialog open={control?.open} onOpenChange={control?.onOpenChange}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
