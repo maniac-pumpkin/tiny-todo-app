@@ -21,8 +21,8 @@ export const dirBodySchema = z.strictObject({
 })
 
 export const taskBodySchema = z.strictObject({
-  title: z.string().min(3).max(25),
-  description: z.string().max(80),
+  title: z.string().min(3).max(35),
+  description: z.string().max(100),
   deadline: z.string(),
   isCompleted: z.boolean(),
   isImportant: z.boolean(),
