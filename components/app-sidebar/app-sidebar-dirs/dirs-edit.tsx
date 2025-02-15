@@ -10,8 +10,10 @@ import useDirectories from "@/hooks/use-directories"
 import { toast } from "@/hooks/use-toast"
 import { Pencil } from "lucide-react"
 import Form from "next/form"
+import { useState } from "react"
 
 function EditDirectory({ id }: { id: number }) {
+  const [isOpen, setIsOpen] = useState(false)
   const refresh = useDirectories((state) => state.refresh)
 
   const handleAction = async (f: FormData) => {
@@ -21,6 +23,7 @@ function EditDirectory({ id }: { id: number }) {
         description: "Directory name updated successfully.",
       })
       refresh()
+      setIsOpen(false)
     } else
       toast({
         title: "Edition failed",
@@ -33,6 +36,7 @@ function EditDirectory({ id }: { id: number }) {
     <RegularDialog
       title="Edit current directory name"
       description="Capitalized directory name, up to 15 characters in length."
+      control={{ open: isOpen, onOpenChange: setIsOpen }}
       trigger={
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           <Pencil className="mr-2 h-4 w-4" />
