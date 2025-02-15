@@ -49,10 +49,10 @@ function TaskCardEditBtn(props: TaskCardPropsType) {
             <Input
               type="text"
               name="title"
-              placeholder="Enter task title (3-20 characters)"
+              placeholder="Enter task title (3-35 characters)"
               defaultValue={props.title}
               minLength={3}
-              maxLength={20}
+              maxLength={35}
               required
             />
           </Label>
@@ -64,9 +64,9 @@ function TaskCardEditBtn(props: TaskCardPropsType) {
             <span>Description</span>
             <Textarea
               name="description"
-              placeholder="Describe the task in detail (optional, up to 80 characters)"
+              placeholder="Describe the task in detail (optional, up to 100 characters)"
               defaultValue={props.description}
-              maxLength={80}
+              maxLength={100}
             />
           </Label>
           <Label className="flex items-center gap-x-2">
