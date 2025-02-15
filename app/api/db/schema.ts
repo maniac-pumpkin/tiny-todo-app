@@ -28,8 +28,8 @@ export const directories = pgTable(
 
 export const tasks = pgTable("tasks", {
   id: serial("id").primaryKey(),
-  title: varchar("title", { length: 25 }).notNull(),
-  description: varchar("description", { length: 80 }).default(""),
+  title: varchar("title", { length: 35 }).notNull(),
+  description: varchar("description", { length: 100 }).default(""),
   deadline: timestamp("deadline").notNull(),
   isImportant: boolean("is_important").default(false),
   isCompleted: boolean("is_completed").default(false),
