@@ -48,9 +48,9 @@ function AddTask() {
             <Input
               type="text"
               name="title"
-              placeholder="Enter task title (3-20 characters)"
+              placeholder="Enter task title (3-35 characters)"
               minLength={3}
-              maxLength={20}
+              maxLength={35}
               required
             />
           </Label>
@@ -62,8 +62,8 @@ function AddTask() {
             <span>Description</span>
             <Textarea
               name="description"
-              placeholder="Describe the task in detail (optional, up to 80 characters)"
-              maxLength={80}
+              placeholder="Describe the task in detail (optional, up to 100 characters)"
+              maxLength={100}
             />
           </Label>
           <Label className="space-y-2">
