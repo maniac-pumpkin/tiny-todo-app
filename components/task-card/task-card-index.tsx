@@ -29,10 +29,10 @@ function TaskCard(props: TaskCardPropsType) {
   return (
     <Card className="flex flex-col justify-between">
       <CardHeader className="flex-row items-center justify-between space-y-0">
-        <CardTitle className={cn("text-base", isDone && "line-through", isOutDated && "text-red-600")}>
+        <CardTitle className={cn("line-clamp-1 text-base", isDone && "line-through", isOutDated && "text-red-600")}>
           {props.title}
         </CardTitle>
-        <Badge>{props.dirName}</Badge>
+        <Badge className="line-clamp-1">{props.dirName}</Badge>
       </CardHeader>
       <CardContent className="space-y-5">
         <CardDescription className={cn(isDone && "line-through", isOutDated && "text-red-600")}>
