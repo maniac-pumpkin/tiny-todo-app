@@ -9,7 +9,7 @@ export default async function Page({ params }: PropsType) {
 
   const tasks = await taskGet()
 
-  const tasksByDirName = tasks.filter(({ dirName }) => dirName === name)
+  const tasksByDirName = tasks.filter(({ dirName }) => dirName === decodeURIComponent(name))
 
   if (!tasksByDirName.length) notFound()
 
