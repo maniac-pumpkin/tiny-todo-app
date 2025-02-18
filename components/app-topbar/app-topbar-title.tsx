@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation"
 
-const refactorName = (name: string) => name.replace(/\/|%20/g, " ").trim()
+const refactorName = (name: string) => decodeURIComponent(name.replace(/\//g, " ").trim())
 
 function AppTopbarTitle() {
   const pathname = usePathname()
