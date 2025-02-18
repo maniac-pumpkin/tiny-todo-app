@@ -1,5 +1,5 @@
 {
-  "id": "d9a10fba-62dc-4d9c-ad34-43abdeb2bf23",
+  "id": "7f0562e3-3100-4ff4-ae82-373f792fa288",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -70,13 +70,13 @@
         },
         "title": {
           "name": "title",
-          "type": "varchar(25)",
+          "type": "varchar(35)",
           "primaryKey": false,
           "notNull": true
         },
         "description": {
           "name": "description",
-          "type": "varchar(80)",
+          "type": "varchar(100)",
           "primaryKey": false,
           "notNull": false,
           "default": "''"
@@ -158,19 +158,6 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true
-        },
-        "email": {
-          "name": "email",
-          "type": "varchar(254)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "is_verified": {
-          "name": "is_verified",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false,
-          "default": false
         }
       },
       "indexes": {},
@@ -183,61 +170,8 @@
           "columns": [
             "username"
           ]
-        },
-        "users_email_unique": {
-          "name": "users_email_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
         }
       },
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.verify_token": {
-      "name": "verify_token",
-      "schema": "",
-      "columns": {
-        "user_id": {
-          "name": "user_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "token": {
-          "name": "token",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "exp_date": {
-          "name": "exp_date",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "NOW() + INTERVAL '10 minutes'"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "verify_token_user_id_users_id_fk": {
-          "name": "verify_token_user_id_users_id_fk",
-          "tableFrom": "verify_token",
-          "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
