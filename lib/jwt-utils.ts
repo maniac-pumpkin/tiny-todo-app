@@ -1,7 +1,8 @@
 import { SignJWT, jwtVerify } from "jose"
 import { z } from "zod"
+import env from "./env-utils"
 
-const secretKey = new TextEncoder().encode(process.env["JWT_SECRET_TOKEN"])
+const secretKey = new TextEncoder().encode(env.JWT_SECRET_TOKEN)
 
 const authTokenSchema = z
   .string()
