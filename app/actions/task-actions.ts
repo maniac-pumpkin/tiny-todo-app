@@ -1,10 +1,9 @@
 "use server"
 
-import env from "@/lib/env-utils"
 import { revalidateTag } from "next/cache"
 import { cookies } from "next/headers"
 
-const BASE_URL = env.NEXT_PUBLIC_BASE_URL
+const BASE_URL = process.env["NEXT_PUBLIC_BASE_URL"]!
 
 export const taskGet = async () => {
   const cookie = await cookies()

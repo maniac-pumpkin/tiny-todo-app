@@ -1,9 +1,8 @@
 "use server"
 
-import env from "@/lib/env-utils"
 import { cookies } from "next/headers"
 
-const BASE_URL = env.NEXT_PUBLIC_BASE_URL
+const BASE_URL = process.env["NEXT_PUBLIC_BASE_URL"]!
 
 export const userSignIn = async (f: FormData) => {
   const username = f.get("username") as string
